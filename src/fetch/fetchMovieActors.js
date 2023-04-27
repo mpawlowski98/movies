@@ -1,30 +1,31 @@
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import apiData from '../API/apiData.json';
-import { useState, useEffect } from 'react';
 
-const baseUrl = apiData.baseUrl;
-const apiKey = apiData.apiKey;
+const apiKey = apiData[0].apiKey;
+const baseUrl = apiData[0].baseUrl;
 
-export const useFetchMoviesActors = () => {
-  const [movieActors, setMovieActors] = useState([]);
+export default function useMovieActors(movieId) {
+  const [actors, setActors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchActors = async () => {
+    const fetchMovieActors = async () => {
       if (!movieId) {
-        setMovieActors([]);
+        setActors([]);
         return;
       }
+
       setIsLoading(true);
       try {
         const response = await axios.get(
           `${baseUrl}movie/${movieId}/credits?api_key=${apiKey}&language=en-US`
         );
         if (response.status === 200) {
-          setMovieActors(response.data.cast);
+          setActors(response.data.cast);
         } else {
-          setError(`Error fetch actors`);
+          setError('Error fetching movie actors.');
         }
       } catch (err) {
         setError(err.message);
@@ -32,8 +33,8 @@ export const useFetchMoviesActors = () => {
       setIsLoading(false);
     };
 
-    fetchActors();
+    fetchMovieActors();
   }, [movieId]);
 
-  return [movieActors, isLoading, error];
-};
+  return { actors, isLoading, error };
+}

@@ -2,10 +2,10 @@ import axios from 'axios';
 import apiData from '../API/apiData.json';
 import { useState, useEffect } from 'react';
 
-const baseUrl = apiData.baseUrl;
-const apiKey = apiData.apiKey;
+const baseUrl = apiData[0].baseUrl;
+const apiKey = apiData[0].apiKey;
 
-export const useFetchMovies = () => {
+const useFetchMovies = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -33,3 +33,5 @@ export const useFetchMovies = () => {
 
   return { movies, isLoading, error };
 };
+
+export default useFetchMovies;

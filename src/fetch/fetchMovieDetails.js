@@ -1,30 +1,31 @@
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import apiData from '../API/apiData.json';
-import { useState, useEffect } from 'react';
 
-const baseUrl = apiData.baseUrl;
-const apiKey = apiData.apiKey;
+const apiKey = apiData[0].apiKey;
+const baseUrl = apiData[0].baseUrl;
 
-export const useFetchMoviesDetails = () => {
-  const [details, setDetails] = useState(null);
+export default function useMovieDetails(movieId) {
+  const [movieDetails, setMovieDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchDetails = async () => {
+    const fetchMovieDetails = async () => {
       if (!movieId) {
-        setDetails(null);
+        setMovieDetails(null);
         return;
       }
+
       setIsLoading(true);
       try {
         const response = await axios.get(
           `${baseUrl}movie/${movieId}?api_key=${apiKey}&language=en-US`
         );
-        if (response.statis === 200) {
-          setDetails(response.data);
+        if (response.status === 200) {
+          setMovieDetails(response.data);
         } else {
-          setError(`Error fetch details`);
+          setError('Error fetching movie details.');
         }
       } catch (err) {
         setError(err.message);
@@ -32,8 +33,8 @@ export const useFetchMoviesDetails = () => {
       setIsLoading(false);
     };
 
-    fetchDetails();
+    fetchMovieDetails();
   }, [movieId]);
 
-  return [details, isLoading, error];
-};
+  return { movieDetails, isLoading, error };
+}

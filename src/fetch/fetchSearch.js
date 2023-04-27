@@ -1,30 +1,31 @@
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import apiData from '../API/apiData.json';
-import { useState, useEffect } from 'react';
 
-const baseUrl = apiData.baseUrl;
-const apiKey = apiData.apiKey;
+const apiKey = apiData[0].apiKey;
+const baseUrl = apiData[0].baseUrl;
 
-export const useFetchSearchMovies = () => {
-  const [searchMovies, setSearchMovies] = useState([]);
+export default function useSearchMovies(query) {
+  const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchSearch = async () => {
+    const searchMovies = async () => {
       if (!query) {
-        setSearchMovies([]);
+        setMovies([]);
         return;
       }
+
       setIsLoading(true);
       try {
         const response = await axios.get(
           `${baseUrl}search/movie?api_key=${apiKey}&language=en-US&page=1&include_adult=false&query=${query}`
         );
         if (response.status === 200) {
-          setSearchMovies(response.data.results);
+          setMovies(response.data.results);
         } else {
-          setError(`Error fetch actors`);
+          setError('Error searching for movies.');
         }
       } catch (err) {
         setError(err.message);
@@ -32,8 +33,12 @@ export const useFetchSearchMovies = () => {
       setIsLoading(false);
     };
 
-    fetchSearch();
+    const delayDebounceFn = setTimeout(() => {
+      searchMovies();
+    }, 500);
+
+    return () => clearTimeout(delayDebounceFn);
   }, [query]);
 
-  return [searchMovies, isLoading, error];
-};
+  return { movies, isLoading, error };
+}
