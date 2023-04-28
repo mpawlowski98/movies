@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import fetchMovieReviews from '../../../fetch/fetchMovieReviews';
+import fetchMovieReviews from 'fetch/fetchMovieReviews';
 import css from './Reviews.module.css';
 
 const Reviews = () => {
@@ -16,21 +16,21 @@ const Reviews = () => {
   }
 
   if (!reviews || reviews.length === 0) {
-    return <div> No reviews found.</div>;
+    return <div>No reviews found for this movie.</div>;
   }
 
   return (
-    <div>
+    <>
       <h1 className={css.header}>Reviews</h1>
-      <ul className={css.list}>
+      <ul>
         {reviews.map(review => (
-          <li key={review.id} className={css.listItem}>
-            <h3 className={css.author}>{review.author}</h3>
-            <p className={css.review}>{review.content}</p>
+          <li key={review.id}>
+            <h3>{review.author}</h3>
+            <p>{review.content}</p>
           </li>
         ))}
       </ul>
-    </div>
+    </>
   );
 };
 
