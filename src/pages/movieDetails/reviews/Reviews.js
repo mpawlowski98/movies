@@ -6,6 +6,7 @@ import css from './Reviews.module.css';
 const Reviews = () => {
   const { movieId } = useParams();
   const { reviews, isLoading, error } = fetchMovieReviews(movieId);
+  const parse = require('html-react-parser');
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -25,8 +26,8 @@ const Reviews = () => {
       <ul>
         {reviews.map(review => (
           <li key={review.id}>
-            <h3>{review.author}</h3>
-            <p>{review.content}</p>
+            {parse(`<h3 className=${css.author}>${review.author}</h3>
+            // <p className=${css.review}>${review.content}</p>`)}
           </li>
         ))}
       </ul>
