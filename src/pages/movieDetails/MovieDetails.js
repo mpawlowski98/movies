@@ -30,21 +30,32 @@ const MovieDetails = () => {
 
   return (
     <div className={css.container}>
-      <div>
-        <h1>{movieDetails.title}</h1>
+      <div className={css.container}>
+        <h1 className={css.movietitle}>{movieDetails.title}</h1>
         <img
           src={`${apiInfo[0].posterPath}${movieDetails.poster_path}`}
           alt={movieDetails.title}
         />
-        <div>
-          <p>Release Date: {movieDetails.release_date}</p>
-          <p>Overview: {movieDetails.overview}</p>
-          <p>Vote Average: {movieDetails.vote_average}</p>
+        <div className={css.infomoviecontainer}>
+          <p className={css.infomovie}>
+            Release Date: {movieDetails.release_date}
+          </p>
+          <p className={css.infomoviedwo}>Overview: {movieDetails.overview}</p>
+          <p className={css.infomovie}>
+            Vote Average: {movieDetails.vote_average}
+          </p>
         </div>
       </div>
       <div>
-        <button onClick={() => handleClick('cast')}>Cast</button>
-        <button onClick={() => handleClick('reviews')}>Reviews</button>
+        <button className={css.buttonmovie} onClick={() => handleClick('cast')}>
+          Cast
+        </button>
+        <button
+          className={css.buttonmovie}
+          onClick={() => handleClick('reviews')}
+        >
+          Reviews
+        </button>
       </div>
       <div>
         <Suspense fallback={<div>Loading...</div>}>

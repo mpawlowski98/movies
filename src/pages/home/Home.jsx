@@ -16,11 +16,13 @@ export default function Home() {
 
   return (
     <div className={css.home}>
-      <h1>Popular Movies</h1>
-      <ul>
+      <h1 className={css.titleHome}>Popular Movies</h1>
+      <ul className={css.moviecontainer}>
         {movies.map(movie => (
           <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+            <Link className={css.movie} to={`/movies/${movie.id}`}>
+              {movie.title}
+            </Link>
           </li>
         ))}
       </ul>

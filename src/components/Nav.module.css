@@ -1,0 +1,14 @@
+.navcontainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* flex-direction: column; */
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.home {
+  color: rgb(166 131 227);
+  font-size: 40px;
+  margin-bottom: 20px;
+}

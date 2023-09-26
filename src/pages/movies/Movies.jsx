@@ -47,7 +47,7 @@ export default function Movies() {
           placeholder="Search for movies..."
         />
         <button type="submit" className={css.button}>
-          Search
+          SEARCH
         </button>
       </form>
       <ul className={css.list}>

@@ -1,5 +1,15 @@
+.actorcontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .header {
   font-size: 32px;
   font-weight: bold;
   margin-bottom: 10px;
+  color: #b8bac5;
+}
+.actorlist {
+  color: #b8bac5;
 }

@@ -2,14 +2,17 @@
   font-size: 32px;
   font-weight: bold;
   margin-bottom: 10px;
+  color: #b8bac5;
 }
 .author {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 10px;
+  color: #7085fb;
 }
 
 .review {
   font-size: 16px;
   line-height: 1.5;
+  color: #b8bac5;
 }

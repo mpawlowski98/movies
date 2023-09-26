@@ -31,16 +31,16 @@ const Cast = () => {
   }
 
   return (
-    <>
+    <div className={css.actorcontainer}>
       <h1 className={css.header}>Actors</h1>
       <ul>
         {processedActors.map(actor => (
-          <li key={actor.id}>
+          <li className={css.actorlist} key={actor.id}>
             {actor.name} as {actor.character}
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };
 

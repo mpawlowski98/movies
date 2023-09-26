@@ -1,8 +1,49 @@
 .container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   max-width: 800px;
   margin: 0 auto;
   padding: 40px 20px 20px 20px;
 
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.movietitle {
+  color: rgb(166 131 227);
+  margin-bottom: 20px;
+}
+.infomoviecontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+.infomovie {
+  color: #b8bac5;
+  margin-bottom: 20px;
+  font-size: 25px;
+}
+.infomoviedwo {
+  font-size: 18px;
+  color: #b8bac5;
+  margin-bottom: 20px;
+}
+
+.buttonmovie {
+  background-color: rgb(166 131 227);
+  border: none;
+  border-radius: 8%;
+  padding: 12px 31px;
+  color: #fff;
+  font-size: 15px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.buttonmovie:hover,
+.buttonmovie:focus {
+  background-color: rgb(192, 114, 41);
 }
